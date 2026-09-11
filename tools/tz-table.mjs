@@ -12,21 +12,24 @@
  * per DST regime — the greater offset first, so the "summer" line leads in the
  * northern hemisphere and January leads in Sydney.
  *
- * Country markers are GitHub emoji shortcodes (`:us:`), not raw flag emoji:
- * Windows ships no flag glyphs, so raw flags render as the bare letters "us".
+ * Country markers are reference-style images pointing at flagcdn PNGs, defined
+ * under the table in README.md. Not raw flag emoji and not `:xx:` shortcodes:
+ * GitHub renders a shortcode into the raw emoji character, and Windows ships no
+ * flag glyphs, so both collapse to the bare letters "us". An <img> renders the
+ * same everywhere.
  */
 
 const ZONES = [
   ['🌐 **UTC** — the reference', 'UTC', 'UTC+0'],
-  [':ar: **Buenos Aires** · :br: **São Paulo**', 'America/Argentina/Buenos_Aires', 'UTC−3'],
-  [':us: **US Eastern**', 'America/New_York', ''],
-  [':us: **US Pacific**', 'America/Los_Angeles', ''],
-  [':gb: **London**', 'Europe/London', ''],
-  [':de: :fr: :es: **Central Europe** — Berlin · Paris · Madrid', 'Europe/Berlin', ''],
-  [':in: **India**', 'Asia/Kolkata', ''],
-  [':cn: :sg: :au: **China · Singapore · Perth**', 'Asia/Singapore', ''],
-  [':jp: :kr: **Japan · Korea**', 'Asia/Tokyo', ''],
-  [':au: **Sydney**', 'Australia/Sydney', '']
+  ['![AR][ar] **Buenos Aires** · ![BR][br] **São Paulo**', 'America/Argentina/Buenos_Aires', 'UTC−3'],
+  ['![US][us] **US Eastern**', 'America/New_York', ''],
+  ['![US][us] **US Pacific**', 'America/Los_Angeles', ''],
+  ['![GB][gb] **London**', 'Europe/London', ''],
+  ['![DE][de] ![FR][fr] ![ES][es] **Central Europe** — Berlin · Paris · Madrid', 'Europe/Berlin', ''],
+  ['![IN][in] **India**', 'Asia/Kolkata', ''],
+  ['![CN][cn] ![SG][sg] ![AU][au] **China · Singapore · Perth**', 'Asia/Singapore', ''],
+  ['![JP][jp] ![KR][kr] **Japan · Korea**', 'Asia/Tokyo', ''],
+  ['![AU][au] **Sydney**', 'Australia/Sydney', '']
 ]
 
 /** Peak windows in UTC hours, same as plugin.js. */
