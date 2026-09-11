@@ -21,31 +21,31 @@ git clone https://github.com/aimagist/deepseek-offpeak \
 
 The app watches that folder and hot-reloads on every save. If the chip doesn't show up, run **⌘K → Reload desktop plugins**.
 
-## The schedule
+## Your cheap hours
 
-Peak rates are **2× off-peak**, and peak is only two short blocks on **UTC weekdays** — 7 hours out of every 24. Everything else is cheap:
+Wherever you are, the useful question is: **when are tokens half price on my clock?** The schedule is defined in UTC, so here it is converted. Every window below is off-peak — 50% off every rate, cache hits included.
 
-| Where | Peak block 1 | Peak block 2 |
+| Where (your clock) | Main cheap window — 15 h | Top-up — 2 h |
 |---|---|---|
-| **UTC** — the reference everything is defined in | 01:00 – 04:00 | 06:00 – 10:00 |
-| Buenos Aires · São Paulo | 22:00 – 01:00 | 03:00 – 07:00 |
-| US Eastern | 21:00 – 00:00<br>20:00 – 23:00 | 02:00 – 06:00<br>01:00 – 05:00 |
-| US Pacific | 18:00 – 21:00<br>17:00 – 20:00 | 23:00 – 03:00<br>22:00 – 02:00 |
-| London | 02:00 – 05:00<br>01:00 – 04:00 | 07:00 – 11:00<br>06:00 – 10:00 |
-| Central Europe (Berlin · Paris · Madrid) | 03:00 – 06:00<br>02:00 – 05:00 | 08:00 – 12:00<br>07:00 – 11:00 |
-| India | 06:30 – 09:30 | 11:30 – 15:30 |
-| China · Singapore · Perth | 09:00 – 12:00 | 14:00 – 18:00 |
-| Japan · Korea | 10:00 – 13:00 | 15:00 – 19:00 |
-| Sydney | 12:00 – 15:00<br>11:00 – 14:00 | 17:00 – 21:00<br>16:00 – 20:00 |
+| **UTC** — the reference | 10:00 – 01:00 → | 04:00 – 06:00 |
+| **Buenos Aires · São Paulo** (UTC−3) | 07:00 – 22:00 | 01:00 – 03:00 |
+| **US Eastern** (UTC−4 / −5) | 06:00 – 21:00<br>05:00 – 20:00 | 00:00 – 02:00<br>23:00 – 01:00 → |
+| **US Pacific** (UTC−7 / −8) | 03:00 – 18:00<br>02:00 – 17:00 | 21:00 – 23:00<br>20:00 – 22:00 |
+| **London** (UTC+1 / +0) | 11:00 – 02:00 →<br>10:00 – 01:00 → | 05:00 – 07:00<br>04:00 – 06:00 |
+| **Central Europe** — Berlin · Paris · Madrid (UTC+2 / +1) | 12:00 – 03:00 →<br>11:00 – 02:00 → | 06:00 – 08:00<br>05:00 – 07:00 |
+| **India** (UTC+5:30) | 15:30 – 06:30 → | 09:30 – 11:30 |
+| **China · Singapore · Perth** (UTC+8) | 18:00 – 09:00 → | 12:00 – 14:00 |
+| **Japan · Korea** (UTC+9) | 19:00 – 10:00 → | 13:00 – 15:00 |
+| **Sydney** (UTC+11 / +10) | 21:00 – 12:00 →<br>20:00 – 11:00 → | 15:00 – 17:00<br>14:00 – 16:00 |
 
-Two times in one cell = your **summer / winter** clock time. The windows are pinned to UTC, so they slide an hour local when your clocks change — and Sydney's summer is January, so its two rows are the other way round.
+Every UTC weekday gives you **17 cheap hours**: one 15-hour main window, plus a 2-hour top-up between the two peak blocks. Outside these windows it's peak — 01:00–04:00 and 06:00–10:00 UTC, Monday to Friday — and you pay full price.
+
+**Reading it:** two times in a cell mean your **local summer** first, **local winter** second (the schedule is pinned to UTC, so it slides an hour when your clocks change — and Sydney's summer is January, so its rows are the other way round). `→` means the window runs past midnight.
 
 Two things worth knowing:
 
-- **The first block lands on Sunday evening in the Americas.** The days are UTC days, so Monday 01:00 UTC is still Sunday night in New York, São Paulo, and further west.
-- **The windows are a Chinese working day.** 09:00–12:00 and 14:00–18:00 in Beijing is 9-to-noon and 2-to-6, split by lunch. DeepSeek charges peak while its home country is at its desk.
-
-The cheap window is everything else: **17 hours on a weekday**, and all weekend. Friday 10:00 UTC through Monday 01:00 UTC runs as **one unbroken off-peak stretch of 2 days 15 hours** — the slot to aim any long job at.
+- **In the Americas the week starts on Sunday evening.** The days are UTC days, so the Monday peak blocks land Sunday night in New York, São Paulo and further west. Your long cheap run — the weekend — starts at Friday 10:00 UTC, which is anywhere from Friday morning to Friday night on your own clock.
+- **The peak windows are a Chinese working day.** 09:00–12:00 and 14:00–18:00 in Beijing is 9-to-noon and 2-to-6, split by lunch. DeepSeek charges peak while its home country is at its desk.
 
 The windows come straight from DeepSeek's own [Models & Pricing page](https://api-docs.deepseek.com/quick_start/pricing) (footnote 1):
 
