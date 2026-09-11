@@ -88,9 +88,17 @@ node offpeak.test.mjs
 
 Why no SDK in the test: a runtime plugin is loaded as plain ESM with no build step, so it may import **only** `@hermes/plugin-sdk`, `react`, and `react/jsx-runtime`. The file therefore has to keep its logic import-free — which is exactly what makes it testable with `node`.
 
+Everything else lives in `tools/`:
+
+| File | What it is |
+|---|---|
+| `tz-table.mjs` | Prints the timezone table above, computed from real IANA zones — `node tools/tz-table.mjs`. Run it after changing `PEAK_WINDOWS` and paste the output over the table. |
+| `chip-sample.html` | The source of the header image (`assets/chip.png`). |
+| `chip-preview.html` | Both chip states with their hover tooltips. |
+
 ## Scope
 
-- Desktop only. No Python half, no tools, no hooks, no `plugin.yaml` — nothing to enable in the agent.
+- Desktop only. No Python half, no agent-side tools or hooks, no `plugin.yaml` — nothing to enable in the agent.
 - The schedule is deepseek-offpeak's own arithmetic on UTC clock time, not a feed. If DeepSeek changes its windows or its rates ([pricing page](https://api-docs.deepseek.com/quick_start/pricing)), edit `PEAK_WINDOWS`.
 - The status bar gets the theme's accent, not a hardcoded blue (see above).
 
