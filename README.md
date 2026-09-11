@@ -23,24 +23,26 @@ The app watches that folder and hot-reloads on every save. If the chip doesn't s
 
 ## Your cheap hours
 
-Wherever you are, the useful question is: **when are tokens half price on my clock?** The schedule is defined in UTC, so here it is converted. Every window below is off-peak — 50% off every rate, cache hits included.
+Wherever you are, the useful question is: **when are tokens half price on my clock?** The schedule is defined in UTC, so here it is converted. Every row adds up to 24 hours.
 
-| Where (your clock) | Main cheap window — 15 h | Top-up — 2 h |
-|---|---|---|
-| **UTC** — the reference | 10:00 – 01:00 → | 04:00 – 06:00 |
-| **Buenos Aires · São Paulo** (UTC−3) | 07:00 – 22:00 | 01:00 – 03:00 |
-| **US Eastern** (UTC−4 / −5) | 06:00 – 21:00<br>05:00 – 20:00 | 00:00 – 02:00<br>23:00 – 01:00 → |
-| **US Pacific** (UTC−7 / −8) | 03:00 – 18:00<br>02:00 – 17:00 | 21:00 – 23:00<br>20:00 – 22:00 |
-| **London** (UTC+1 / +0) | 11:00 – 02:00 →<br>10:00 – 01:00 → | 05:00 – 07:00<br>04:00 – 06:00 |
-| **Central Europe** — Berlin · Paris · Madrid (UTC+2 / +1) | 12:00 – 03:00 →<br>11:00 – 02:00 → | 06:00 – 08:00<br>05:00 – 07:00 |
-| **India** (UTC+5:30) | 15:30 – 06:30 → | 09:30 – 11:30 |
-| **China · Singapore · Perth** (UTC+8) | 18:00 – 09:00 → | 12:00 – 14:00 |
-| **Japan · Korea** (UTC+9) | 19:00 – 10:00 → | 13:00 – 15:00 |
-| **Sydney** (UTC+11 / +10) | 21:00 – 12:00 →<br>20:00 – 11:00 → | 15:00 – 17:00<br>14:00 – 16:00 |
+🟢 **half price** · 🔴 **full price**
 
-Every UTC weekday gives you **17 cheap hours**: one 15-hour main window, plus a 2-hour top-up between the two peak blocks. Outside these windows it's peak — 01:00–04:00 and 06:00–10:00 UTC, Monday to Friday — and you pay full price.
+| 🌍 Where (your clock) | 🟢 Main cheap window — 15 h | 🟢 Short cheap window — 2 h | 🔴 Full price — 7 h |
+|---|---|---|---|
+| 🌐 **UTC** — the reference (UTC+0) | 10:00 – 01:00 → | 04:00 – 06:00 | 01:00 – 04:00 · 06:00 – 10:00 |
+| 🇦🇷 **Buenos Aires** · 🇧🇷 **São Paulo** (UTC−3) | 07:00 – 22:00 | 01:00 – 03:00 | 03:00 – 07:00 · 22:00 – 01:00 → |
+| 🇺🇸 **US Eastern** (UTC−4 / UTC−5) | 06:00 – 21:00<br>05:00 – 20:00 | 00:00 – 02:00<br>23:00 – 01:00 → | 02:00 – 06:00 · 21:00 – 00:00<br>01:00 – 05:00 · 20:00 – 23:00 |
+| 🇺🇸 **US Pacific** (UTC−7 / UTC−8) | 03:00 – 18:00<br>02:00 – 17:00 | 21:00 – 23:00<br>20:00 – 22:00 | 18:00 – 21:00 · 23:00 – 03:00 →<br>17:00 – 20:00 · 22:00 – 02:00 → |
+| 🇬🇧 **London** (UTC+1 / UTC+0) | 11:00 – 02:00 →<br>10:00 – 01:00 → | 05:00 – 07:00<br>04:00 – 06:00 | 02:00 – 05:00 · 07:00 – 11:00<br>01:00 – 04:00 · 06:00 – 10:00 |
+| 🇩🇪 🇫🇷 🇪🇸 **Central Europe** — Berlin · Paris · Madrid (UTC+2 / UTC+1) | 12:00 – 03:00 →<br>11:00 – 02:00 → | 06:00 – 08:00<br>05:00 – 07:00 | 03:00 – 06:00 · 08:00 – 12:00<br>02:00 – 05:00 · 07:00 – 11:00 |
+| 🇮🇳 **India** (UTC+5:30) | 15:30 – 06:30 → | 09:30 – 11:30 | 06:30 – 09:30 · 11:30 – 15:30 |
+| 🇨🇳 🇸🇬 🇦🇺 **China · Singapore · Perth** (UTC+8) | 18:00 – 09:00 → | 12:00 – 14:00 | 09:00 – 12:00 · 14:00 – 18:00 |
+| 🇯🇵 🇰🇷 **Japan · Korea** (UTC+9) | 19:00 – 10:00 → | 13:00 – 15:00 | 10:00 – 13:00 · 15:00 – 19:00 |
+| 🇦🇺 **Sydney** (UTC+11 / UTC+10) | 21:00 – 12:00 →<br>20:00 – 11:00 → | 15:00 – 17:00<br>14:00 – 16:00 | 12:00 – 15:00 · 17:00 – 21:00<br>11:00 – 14:00 · 16:00 – 20:00 |
 
-**Reading it:** two times in a cell mean your **local summer** first, **local winter** second (the schedule is pinned to UTC, so it slides an hour when your clocks change — and Sydney's summer is January, so its rows are the other way round). `→` means the window runs past midnight.
+That is the whole story: **17 cheap hours and 7 full-price hours** every UTC weekday. The 15-hour window is where a long job belongs; the 2-hour one is the gap *between* the two full-price blocks — worth grabbing when something has to run on a peak day.
+
+**Reading it:** a city with two offsets (`UTC−4 / −5`) carries two times on two lines in every cell — the first line for the first offset, the second for the second. The schedule is pinned to UTC, so your clock times slide an hour when DST changes; Sydney's `+11` line is January. `→` means the window runs past midnight and ends the next morning.
 
 Two things worth knowing:
 
