@@ -1,0 +1,6 @@
+name: hermes-desktop-deepseek-offpeak-status
+version: 1.0.0
+description: "DeepSeek off-peak status: a desktop status-bar chip plus a tool that tells the agent whether tokens are half price right now."
+author: Fede (aimagist)
+provides_tools:
+  - deepseek_rate_status

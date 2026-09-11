@@ -1,12 +1,12 @@
 # hermes-desktop-deepseek-offpeak-status
 
-A whale in the Hermes Desktop status bar that shows, at a glance, whether DeepSeek tokens are half price right now.
+A whale in the Hermes Desktop status bar that shows, at a glance, whether DeepSeek tokens are half price right now — plus a small agent tool that answers the same question in chat.
 
 ![Off-peak and peak chip](assets/chip.png)
 
 ## What it does
 
-DeepSeek charges half price outside its peak hours. This chip turns that into something you can see without thinking about it — it sits in the bottom-right status bar, next to the cache and context readouts.
+DeepSeek charges half price outside its peak hours. This plugin turns that into something you can see without thinking about it — the chip sits in the bottom-right status bar, next to the cache and context readouts.
 
 - 🐋 **Blue whale** — off-peak right now: tokens cost half. A good moment to start a long job.
 - 🐋 **Grey whale** — peak: full price.
@@ -15,22 +15,43 @@ DeepSeek charges half price outside its peak hours. This chip turns that into so
 
 It reads your clock and nothing else: no network calls, no account, no config file, and it never touches your requests. It just makes the cheap hours visible.
 
+**Agent half** — the same state, on demand:
+
+```
+deepseek_rate_status  →  { "period": "off-peak", "rates": "half price (50% off peak)",
+                           "switches_to": "peak", "time_until_switch": "1h40m", ... }
+```
+
+Ask the agent *"is now a cheap time to run this?"* and it can call the tool instead of guessing — handy before a long or bulk job.
+
 ## Install
+
+### Desktop chip
 
 With Hermes Desktop installed, one click:
 
 **[Install in Hermes](hermes://plugin/install?repo=aimagist/hermes-desktop-deepseek-offpeak-status)**
 
-The dialog shows what the repo ships (a desktop plugin, no backend), you tick the component, and it lands in `<hermes home>/desktop-plugins/hermes-desktop-deepseek-offpeak-status/`.
+The dialog detects both halves; tick the desktop component and it lands in `<hermes home>/desktop-plugins/hermes-desktop-deepseek-offpeak-status/`.
 
-No link handler? Clone it yourself — no dependencies, no build step:
+By hand — no dependencies, no build step:
 
 ```bash
-git clone https://github.com/aimagist/hermes-desktop-deepseek-offpeak-status \
-  "<hermes home>/desktop-plugins/hermes-desktop-deepseek-offpeak-status"
+git clone https://github.com/aimagist/hermes-desktop-deepseek-offpeak-status /tmp/dosp
+mkdir -p "<hermes home>/desktop-plugins/hermes-desktop-deepseek-offpeak-status"
+cp /tmp/dosp/desktop/plugin.js "<hermes home>/desktop-plugins/hermes-desktop-deepseek-offpeak-status/"
 ```
 
 The app watches that folder and hot-reloads on every save. If the chip doesn't show up, run **⌘K → Reload desktop plugins**.
+
+### Agent tool
+
+```bash
+hermes plugins install aimagist/hermes-desktop-deepseek-offpeak-status
+hermes plugins enable hermes-desktop-deepseek-offpeak-status
+```
+
+That installs the package into `<hermes home>/plugins/<name>/` and the status tool is available to the agent after a restart. Nothing to configure, no API keys, no network.
 
 ## Your cheap hours
 
@@ -87,9 +108,21 @@ Off-peak · 50% off
 Ends Mon 01:00 · in 2d 15h
 ```
 
+## What ships
+
+| Path | Half | What it is |
+|---|---|---|
+| `desktop/plugin.js` | Desktop | The status-bar chip. Plain ESM, loaded by the app at runtime. |
+| `plugin.yaml` | Agent | Manifest: the one tool this package provides. |
+| `__init__.py` | Agent | The tool itself — `deepseek_rate_status`, stdlib only. |
+| `offpeak.test.mjs` | — | 22 schedule checks for the chip: `node offpeak.test.mjs`. |
+| `tools/tz-table.mjs` | — | Prints the timezone table above, from real IANA zones — `node tools/tz-table.mjs`. |
+| `tools/chip-sample.html` | — | The source of the header image (`assets/chip.png`). |
+| `tools/chip-preview.html` | — | Both chip states with their hover tooltips. |
+
 ## Make it yours
 
-One constant at the top of `plugin.js`:
+One constant in `desktop/plugin.js`, mirrored in `__init__.py`:
 
 ```js
 /** Peak windows in UTC hours. `[from, to)` — `to` is exclusive. */
@@ -99,33 +132,26 @@ const PEAK_WINDOWS = [
 ]
 ```
 
-Change the hours, change the days (the weekend check is the `day === 0 || day === 6` line in `isPeak`), run the test, done. There is no config file and no backend to run.
+Change the hours, change the days (the weekend check is the `weekday() >= 5` / `day === 0 || day === 6` line), run both checks, done. There is no config file and no backend to run.
 
 The blue is `var(--ui-accent)` — the accent of your active theme, blue on the default skin. Replace it with a fixed hex if you'd rather it never change with the theme.
 
 ## Develop
 
 ```bash
-node offpeak.test.mjs
+node offpeak.test.mjs     # 22 checks: windows, next-switch math, formatting
+python __init__.py        # 8 checks: the agent half's own view of the schedule
+hermes plugins validate . # the catalog admission gate
 ```
 
-22 checks over the peak windows, the next-switch math (including the weekend jump), the countdown format, and the local-time label. The test pulls the pure functions out of `plugin.js` and evaluates them without the SDK.
-
-Why no SDK in the test: a runtime plugin is loaded as plain ESM with no build step, so it may import **only** `@hermes/plugin-sdk`, `react`, and `react/jsx-runtime`. The file therefore has to keep its logic import-free — which is exactly what makes it testable with `node`.
-
-Everything else lives in `tools/`:
-
-| File | What it is |
-|---|---|
-| `tz-table.mjs` | Prints the timezone table above, computed from real IANA zones — `node tools/tz-table.mjs`. Run it after changing `PEAK_WINDOWS` and paste the output over the table. |
-| `chip-sample.html` | The source of the header image (`assets/chip.png`). |
-| `chip-preview.html` | Both chip states with their hover tooltips. |
+The JS test pulls the chip's pure functions out of `desktop/plugin.js` and evaluates them without the SDK. It has to work that way: a runtime plugin is loaded as plain ESM with no build step, so `desktop/plugin.js` may import **only** `@hermes/plugin-sdk`, `react`, and `react/jsx-runtime` — which is exactly what keeps its logic import-free and testable with `node`.
 
 ## Scope
 
-- Desktop only. No Python half, no agent-side tools or hooks, no `plugin.yaml` — nothing to enable in the agent.
-- The schedule is this plugin's own arithmetic on UTC clock time, not a feed. If DeepSeek changes its windows or its rates ([pricing page](https://api-docs.deepseek.com/quick_start/pricing)), edit `PEAK_WINDOWS`.
+- Two halves, both optional: the chip works alone, the tool works alone.
+- The schedule is this plugin's own arithmetic on UTC clock time, not a feed. If DeepSeek changes its windows or its rates ([pricing page](https://api-docs.deepseek.com/quick_start/pricing)), edit `PEAK_WINDOWS` in both halves.
 - The status bar gets the theme's accent, not a hardcoded blue (see above).
+- Catalog status: admission-ready — `hermes plugins validate` passes — pending a reviewed entry.
 
 ## License
 

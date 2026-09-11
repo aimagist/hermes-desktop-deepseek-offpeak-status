@@ -1,0 +1,30 @@
+# Draft catalog entry — NOT auto-loaded from here.
+#
+# Submission is a PR to NousResearch/hermes-agent adding this file as
+# plugin-catalog/hermes-desktop-deepseek-offpeak-status.yaml. Rules that apply
+# (plugin-catalog/README.md):
+#   1. owner-submitted PR (aimagist owns this repo)          ✓
+#   2. public repository                                     ✓
+#   3. `sha` pinned to a commit at least 14 days old          ← fill at submission time
+#   4. capability declarations must match what register() does ✓ (validate passes)
+#
+# Fill `sha` with a commit that is >= 14 days old, e.g.
+#   git log --before="14 days ago" -1 --format=%H
+# and re-run `hermes plugins validate .` before opening the PR.
+
+name: hermes-desktop-deepseek-offpeak-status
+repo: https://github.com/aimagist/hermes-desktop-deepseek-offpeak-status
+sha: ""
+description: >-
+  DeepSeek off-peak status: a desktop status-bar chip that shows whether tokens
+  are at peak or half price, plus a tool that reports the same state to the agent.
+maintainer: aimagist
+tier: community
+docs_url: https://github.com/aimagist/hermes-desktop-deepseek-offpeak-status
+platforms: []
+capabilities:
+  provides_tools:
+    - deepseek_rate_status
+  provides_hooks: []
+  provides_middleware: []
+  requires_env: []

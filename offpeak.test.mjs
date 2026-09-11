@@ -8,7 +8,7 @@
 
 import { readFileSync } from 'node:fs'
 
-const src = readFileSync(new URL('./plugin.js', import.meta.url), 'utf8')
+const src = readFileSync(new URL('./desktop/plugin.js', import.meta.url), 'utf8')
 const code = src
   .replace(/^import .*$/gm, '')
   .replace(/^export default[\s\S]*$/m, '')
