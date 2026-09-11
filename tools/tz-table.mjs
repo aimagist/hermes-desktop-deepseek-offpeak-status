@@ -11,19 +11,22 @@
  * gap between the two full-price blocks) plus the full-price blocks, one line
  * per DST regime — the greater offset first, so the "summer" line leads in the
  * northern hemisphere and January leads in Sydney.
+ *
+ * Country markers are GitHub emoji shortcodes (`:us:`), not raw flag emoji:
+ * Windows ships no flag glyphs, so raw flags render as the bare letters "us".
  */
 
 const ZONES = [
   ['🌐 **UTC** — the reference', 'UTC', 'UTC+0'],
-  ['🇦🇷 **Buenos Aires** · 🇧🇷 **São Paulo**', 'America/Argentina/Buenos_Aires', 'UTC−3'],
-  ['🇺🇸 **US Eastern**', 'America/New_York', ''],
-  ['🇺🇸 **US Pacific**', 'America/Los_Angeles', ''],
-  ['🇬🇧 **London**', 'Europe/London', ''],
-  ['🇩🇪 🇫🇷 🇪🇸 **Central Europe** — Berlin · Paris · Madrid', 'Europe/Berlin', ''],
-  ['🇮🇳 **India**', 'Asia/Kolkata', ''],
-  ['🇨🇳 🇸🇬 🇦🇺 **China · Singapore · Perth**', 'Asia/Singapore', ''],
-  ['🇯🇵 🇰🇷 **Japan · Korea**', 'Asia/Tokyo', ''],
-  ['🇦🇺 **Sydney**', 'Australia/Sydney', '']
+  [':ar: **Buenos Aires** · :br: **São Paulo**', 'America/Argentina/Buenos_Aires', 'UTC−3'],
+  [':us: **US Eastern**', 'America/New_York', ''],
+  [':us: **US Pacific**', 'America/Los_Angeles', ''],
+  [':gb: **London**', 'Europe/London', ''],
+  [':de: :fr: :es: **Central Europe** — Berlin · Paris · Madrid', 'Europe/Berlin', ''],
+  [':in: **India**', 'Asia/Kolkata', ''],
+  [':cn: :sg: :au: **China · Singapore · Perth**', 'Asia/Singapore', ''],
+  [':jp: :kr: **Japan · Korea**', 'Asia/Tokyo', ''],
+  [':au: **Sydney**', 'Australia/Sydney', '']
 ]
 
 /** Peak windows in UTC hours, same as plugin.js. */

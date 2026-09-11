@@ -1,5 +1,6 @@
 /**
- * deepseek-offpeak — DeepSeek rate chip for the Hermes desktop status bar.
+ * hermes-desktop-deepseek-offpeak-status — DeepSeek rate chip for the Hermes
+ * desktop status bar.
  *
  * Blue whale while DeepSeek is off-peak (half price), grey during peak. The
  * number next to it is the time left until the next rate switch.
@@ -122,7 +123,7 @@ function Chip() {
 }
 
 export default {
-  id: 'deepseek-offpeak',
+  id: 'hermes-desktop-deepseek-offpeak-status',
   name: 'DeepSeek Off-Peak',
   register(ctx) {
     ctx.register({

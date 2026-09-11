@@ -1,22 +1,33 @@
-# deepseek-offpeak
+# hermes-desktop-deepseek-offpeak-status
 
-A whale in the Hermes Desktop status bar that turns **blue while DeepSeek is off-peak** — half price — and grey during peak hours. The number beside it is the time left until the next rate switch, so you know at a glance whether a long job is cheap right now or worth postponing.
+A whale in the Hermes Desktop status bar that shows, at a glance, whether DeepSeek tokens are half price right now.
 
 ![Off-peak and peak chip](assets/chip.png)
+
+## What it does
+
+DeepSeek charges half price outside its peak hours. This chip turns that into something you can see without thinking about it — it sits in the bottom-right status bar, next to the cache and context readouts.
+
+- 🐋 **Blue whale** — off-peak right now: tokens cost half. A good moment to start a long job.
+- 🐋 **Grey whale** — peak: full price.
+- **The number next to it** — how long until the rate changes, so you know whether waiting pays.
+- **Hover it** — which rate is running, and the exact time it flips.
+
+It reads your clock and nothing else: no network calls, no account, no config file, and it never touches your requests. It just makes the cheap hours visible.
 
 ## Install
 
 With Hermes Desktop installed, one click:
 
-**[Install in Hermes](hermes://plugin/install?repo=aimagist/deepseek-offpeak)**
+**[Install in Hermes](hermes://plugin/install?repo=aimagist/hermes-desktop-deepseek-offpeak-status)**
 
-The dialog shows what the repo ships (a desktop plugin, no backend), you tick the component, and it lands in `<hermes home>/desktop-plugins/deepseek-offpeak/`.
+The dialog shows what the repo ships (a desktop plugin, no backend), you tick the component, and it lands in `<hermes home>/desktop-plugins/hermes-desktop-deepseek-offpeak-status/`.
 
 No link handler? Clone it yourself — no dependencies, no build step:
 
 ```bash
-git clone https://github.com/aimagist/deepseek-offpeak \
-  "<hermes home>/desktop-plugins/deepseek-offpeak"
+git clone https://github.com/aimagist/hermes-desktop-deepseek-offpeak-status \
+  "<hermes home>/desktop-plugins/hermes-desktop-deepseek-offpeak-status"
 ```
 
 The app watches that folder and hot-reloads on every save. If the chip doesn't show up, run **⌘K → Reload desktop plugins**.
@@ -30,15 +41,15 @@ Wherever you are, the useful question is: **when are tokens half price on my clo
 | 🌍 Where (your clock) | 🟢 Main cheap window — 15 h | 🟢 Short cheap window — 2 h | 🔴 Full price — 7 h |
 |---|---|---|---|
 | 🌐 **UTC** — the reference (UTC+0) | 10:00 – 01:00 → | 04:00 – 06:00 | 01:00 – 04:00 · 06:00 – 10:00 |
-| 🇦🇷 **Buenos Aires** · 🇧🇷 **São Paulo** (UTC−3) | 07:00 – 22:00 | 01:00 – 03:00 | 03:00 – 07:00 · 22:00 – 01:00 → |
-| 🇺🇸 **US Eastern** (UTC−4 / UTC−5) | 06:00 – 21:00<br>05:00 – 20:00 | 00:00 – 02:00<br>23:00 – 01:00 → | 02:00 – 06:00 · 21:00 – 00:00<br>01:00 – 05:00 · 20:00 – 23:00 |
-| 🇺🇸 **US Pacific** (UTC−7 / UTC−8) | 03:00 – 18:00<br>02:00 – 17:00 | 21:00 – 23:00<br>20:00 – 22:00 | 18:00 – 21:00 · 23:00 – 03:00 →<br>17:00 – 20:00 · 22:00 – 02:00 → |
-| 🇬🇧 **London** (UTC+1 / UTC+0) | 11:00 – 02:00 →<br>10:00 – 01:00 → | 05:00 – 07:00<br>04:00 – 06:00 | 02:00 – 05:00 · 07:00 – 11:00<br>01:00 – 04:00 · 06:00 – 10:00 |
-| 🇩🇪 🇫🇷 🇪🇸 **Central Europe** — Berlin · Paris · Madrid (UTC+2 / UTC+1) | 12:00 – 03:00 →<br>11:00 – 02:00 → | 06:00 – 08:00<br>05:00 – 07:00 | 03:00 – 06:00 · 08:00 – 12:00<br>02:00 – 05:00 · 07:00 – 11:00 |
-| 🇮🇳 **India** (UTC+5:30) | 15:30 – 06:30 → | 09:30 – 11:30 | 06:30 – 09:30 · 11:30 – 15:30 |
-| 🇨🇳 🇸🇬 🇦🇺 **China · Singapore · Perth** (UTC+8) | 18:00 – 09:00 → | 12:00 – 14:00 | 09:00 – 12:00 · 14:00 – 18:00 |
-| 🇯🇵 🇰🇷 **Japan · Korea** (UTC+9) | 19:00 – 10:00 → | 13:00 – 15:00 | 10:00 – 13:00 · 15:00 – 19:00 |
-| 🇦🇺 **Sydney** (UTC+11 / UTC+10) | 21:00 – 12:00 →<br>20:00 – 11:00 → | 15:00 – 17:00<br>14:00 – 16:00 | 12:00 – 15:00 · 17:00 – 21:00<br>11:00 – 14:00 · 16:00 – 20:00 |
+| :ar: **Buenos Aires** · :br: **São Paulo** (UTC−3) | 07:00 – 22:00 | 01:00 – 03:00 | 03:00 – 07:00 · 22:00 – 01:00 → |
+| :us: **US Eastern** (UTC−4 / UTC−5) | 06:00 – 21:00<br>05:00 – 20:00 | 00:00 – 02:00<br>23:00 – 01:00 → | 02:00 – 06:00 · 21:00 – 00:00<br>01:00 – 05:00 · 20:00 – 23:00 |
+| :us: **US Pacific** (UTC−7 / UTC−8) | 03:00 – 18:00<br>02:00 – 17:00 | 21:00 – 23:00<br>20:00 – 22:00 | 18:00 – 21:00 · 23:00 – 03:00 →<br>17:00 – 20:00 · 22:00 – 02:00 → |
+| :gb: **London** (UTC+1 / UTC+0) | 11:00 – 02:00 →<br>10:00 – 01:00 → | 05:00 – 07:00<br>04:00 – 06:00 | 02:00 – 05:00 · 07:00 – 11:00<br>01:00 – 04:00 · 06:00 – 10:00 |
+| :de: :fr: :es: **Central Europe** — Berlin · Paris · Madrid (UTC+2 / UTC+1) | 12:00 – 03:00 →<br>11:00 – 02:00 → | 06:00 – 08:00<br>05:00 – 07:00 | 03:00 – 06:00 · 08:00 – 12:00<br>02:00 – 05:00 · 07:00 – 11:00 |
+| :in: **India** (UTC+5:30) | 15:30 – 06:30 → | 09:30 – 11:30 | 06:30 – 09:30 · 11:30 – 15:30 |
+| :cn: :sg: :au: **China · Singapore · Perth** (UTC+8) | 18:00 – 09:00 → | 12:00 – 14:00 | 09:00 – 12:00 · 14:00 – 18:00 |
+| :jp: :kr: **Japan · Korea** (UTC+9) | 19:00 – 10:00 → | 13:00 – 15:00 | 10:00 – 13:00 · 15:00 – 19:00 |
+| :au: **Sydney** (UTC+11 / UTC+10) | 21:00 – 12:00 →<br>20:00 – 11:00 → | 15:00 – 17:00<br>14:00 – 16:00 | 12:00 – 15:00 · 17:00 – 21:00<br>11:00 – 14:00 · 16:00 – 20:00 |
 
 That is the whole story: **17 cheap hours and 7 full-price hours** every UTC weekday. The 15-hour window is where a long job belongs; the 2-hour one is the gap *between* the two full-price blocks — worth grabbing when something has to run on a peak day.
 
@@ -99,7 +110,7 @@ Everything else lives in `tools/`:
 ## Scope
 
 - Desktop only. No Python half, no agent-side tools or hooks, no `plugin.yaml` — nothing to enable in the agent.
-- The schedule is deepseek-offpeak's own arithmetic on UTC clock time, not a feed. If DeepSeek changes its windows or its rates ([pricing page](https://api-docs.deepseek.com/quick_start/pricing)), edit `PEAK_WINDOWS`.
+- The schedule is this plugin's own arithmetic on UTC clock time, not a feed. If DeepSeek changes its windows or its rates ([pricing page](https://api-docs.deepseek.com/quick_start/pricing)), edit `PEAK_WINDOWS`.
 - The status bar gets the theme's accent, not a hardcoded blue (see above).
 
 ## License
