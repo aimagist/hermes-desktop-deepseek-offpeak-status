@@ -32,6 +32,12 @@ Peak rates are **2× off-peak**. Peak, in **UTC, Monday to Friday**:
 
 Everything else is off-peak — weekday evenings and nights, and the whole weekend. Friday 10:00 UTC through Monday 01:00 UTC is **one continuous off-peak stretch**, which is the cheapest window of the week for anything long.
 
+The windows come straight from DeepSeek's own [Models & Pricing page](https://api-docs.deepseek.com/quick_start/pricing) (footnote 1):
+
+> Off-peak rates are half of the peak rates. Peak hours are 01:00 - 04:00 and 06:00 - 10:00 UTC, Monday through Friday (all other hours are off-peak).
+
+That page is also where the per-model peak/off-peak table lives, so it is the one to re-check when rates move.
+
 Hovering the chip gives the state in two lines:
 
 ```
@@ -68,7 +74,7 @@ Why no SDK in the test: a runtime plugin is loaded as plain ESM with no build st
 ## Scope
 
 - Desktop only. No Python half, no tools, no hooks, no `plugin.yaml` — nothing to enable in the agent.
-- The schedule is deepseek-offpeak's own arithmetic on UTC clock time, not a feed. If DeepSeek changes its windows or its rates, edit `PEAK_WINDOWS`.
+- The schedule is deepseek-offpeak's own arithmetic on UTC clock time, not a feed. If DeepSeek changes its windows or its rates ([pricing page](https://api-docs.deepseek.com/quick_start/pricing)), edit `PEAK_WINDOWS`.
 - The status bar gets the theme's accent, not a hardcoded blue (see above).
 
 ## License

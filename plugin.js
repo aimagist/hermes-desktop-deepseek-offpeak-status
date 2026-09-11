@@ -6,6 +6,8 @@
  *
  * Peak hours, UTC, Monday through Friday: 01:00-04:00 and 06:00-10:00.
  * Everything else is off-peak.
+ *
+ * Source: https://api-docs.deepseek.com/quick_start/pricing (footnote 1).
  */
 
 import { STATUSBAR_AREAS, Tip } from '@hermes/plugin-sdk'
