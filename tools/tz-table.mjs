@@ -23,6 +23,8 @@ const ZONES = [
   ['🌐 **UTC** — the reference', 'UTC', 'UTC+0'],
   ['![AR][ar] **Buenos Aires** · ![BR][br] **São Paulo**', 'America/Argentina/Buenos_Aires', 'UTC−3'],
   ['![US][us] **US Eastern**', 'America/New_York', ''],
+  ['![US][us] **US Central**', 'America/Chicago', ''],
+  ['![US][us] **US Mountain**', 'America/Denver', ''],
   ['![US][us] **US Pacific**', 'America/Los_Angeles', ''],
   ['![GB][gb] **London**', 'Europe/London', ''],
   ['![DE][de] ![FR][fr] ![ES][es] **Central Europe** — Berlin · Paris · Madrid', 'Europe/Berlin', ''],
